@@ -6,7 +6,29 @@ const discordClient = new discord.Client({
 
 
 function dlluResponse() {
-    const responses = ['hi', 'how are you?', 'terrible!', 'oh no', 'zxcv', 'me too thanks', 'oh ok', 'ezpz', 'life is hard', 'such is life'];
+    const responses = [
+        'hi',
+        'how are you?',
+        'terrible!',
+        'oh no',
+        'zxcv',
+        'me too thanks',
+        'oh ok',
+        'ezpz',
+        'life is hard',
+        'such is life',
+        'amazing!',
+        'hooray!',
+        'oh',
+        'There is as of yet insufficient data for a meaningful answer.',
+        'are you exicted about the future of puppies?',
+        'do you like moss?',
+        'how do you feel about point set registration?',
+        'confidential!!!!!!!',
+        'woof',
+        'sometimes',
+        'ur face is ugly'
+    ];
     const index = Math.floor(Math.random() * responses.length);
     return responses[index];
 }
