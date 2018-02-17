@@ -2,6 +2,7 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
+    chatbot = require('chatbot');
     
 Object.assign=require('object-assign')
 
