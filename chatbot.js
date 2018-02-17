@@ -21,7 +21,7 @@ function dlluResponse() {
         'hooray!',
         'oh',
         'There is as of yet insufficient data for a meaningful answer.',
-        'are you exicted about the future of puppies?',
+        'are you excited about the future of puppies?',
         'do you like moss?',
         'how do you feel about point set registration?',
         'confidential!!!!!!!',
