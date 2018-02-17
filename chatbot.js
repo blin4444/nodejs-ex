@@ -12,6 +12,9 @@ function dlluResponse() {
 }
 
 discordClient.on('message', (message) => {
+    if (message.author.id === discordClient.user.id) {
+        return;
+    }
     message.reply(dlluResponse());
 });
 
