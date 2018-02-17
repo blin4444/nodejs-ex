@@ -1,6 +1,6 @@
 const discord = require('discord.js');
 
-const discordClient = new Discord.Client({
+const discordClient = new discord.Client({
     autoReconnect: true
 });
 
