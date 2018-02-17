@@ -6,7 +6,6 @@
   "dependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "discord": "^0.8.2",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "mocha": "^2.4.5",
@@ -31,5 +30,8 @@
   "bugs": {
     "url": "http://github.com/openshift/nodejs-ex/issues"
   },
-  "homepage": "http://github.com/openshift/nodejs-ex"
+  "homepage": "http://github.com/openshift/nodejs-ex",
+  "devDependencies": {
+    "discord.js": "^11.3.0"
+  }
 }

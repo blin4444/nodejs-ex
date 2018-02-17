@@ -1,4 +1,4 @@
-const discord = require('discord');
+const discord = require('discord.js');
 
 const discordClient = new Discord.Client({
     autoReconnect: true
@@ -15,6 +15,6 @@ discordClient.on('message', function(message) {
     message.reply(dlluResponse());
 });
 
-const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
+const CLIENT_SECRET = process.env.DISCORD_BOT_USER_TOKEN;
 discordClient.login(CLIENT_SECRET);
 console.log(discordClient);
