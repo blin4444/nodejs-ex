@@ -15,6 +15,6 @@ discordClient.on('message', (message) => {
     message.reply(dlluResponse());
 });
 
-const CLIENT_SECRET = process.env.DISCORD_BOT_USER_TOKEN;
-discordClient.login(CLIENT_SECRET);
+const BOT_USER_TOKEN = process.env.DISCORD_BOT_USER_TOKEN;
+discordClient.login(BOT_USER_TOKEN);
 console.log(discordClient);
