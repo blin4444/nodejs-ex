@@ -5,13 +5,13 @@ const discordClient = new Discord.Client({
 });
 
 
-const dlluResponse = function() {
+function dlluResponse() {
     const responses = ['hi', 'how are you?', 'terrible!', 'oh no', 'zxcv', 'me too thanks', 'oh ok', 'ezpz', 'life is hard', 'such is life'];
     const index = Math.floor(Math.random() * responses.length);
     return responses[index];
 }
 
-discordClient.on('message', function(message) {
+discordClient.on('message', (message) => {
     message.reply(dlluResponse());
 });
 
