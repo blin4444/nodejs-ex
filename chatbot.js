@@ -18,3 +18,5 @@ discordClient.on('message', (message) => {
 const BOT_USER_TOKEN = process.env.DISCORD_BOT_USER_TOKEN;
 discordClient.login(BOT_USER_TOKEN);
 console.log(discordClient);
+
+module.exports = discordClient;
