@@ -28,7 +28,9 @@ function dlluResponse() {
         'woof',
         'sometimes',
         'ur face is ugly',
-        'life is full of mysteries'
+        'life is full of mysteries',
+        'panic!!!!!!!!',
+        'are you excited about'
     ];
     const index = Math.floor(Math.random() * responses.length);
     return responses[index];
