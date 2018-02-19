@@ -102,7 +102,7 @@ function yesNoQuestionResponse() {
 
 function timeoutReply(message, text, delay) {
     setTimeout(function() {
-        message.reply(text);
+        message.channel.send(text);
     }, delay);
 }
 
@@ -150,7 +150,7 @@ function questionStarter() {
 }
 
 const TOPICS = process.env.DISCORD_TOPICS ? process.env.DISCORD_TOPICS.split('|') : [];
-function areYouExcitedAbout() {
+function areYouExcitedAbout(message) {
     const topic = responseHelper(TOPICS).text;
     if (Math.random() < 1/3) {
         timeoutReply(message, 'http://en.wikipedia.org/wiki/' + escape(topic), 3000);
@@ -161,10 +161,10 @@ function areYouExcitedAbout() {
 discordClient.on('message', (message) => {
     if (message.author.id !== discordClient.user.id) {
         const canonicalMessage = message.content.trim().toLowerCase();
-        message.reply(getResponseForString(canonicalMessage, message));
+        message.channel.send(getResponseForString(canonicalMessage, message));
 
         if (canonicalMessage !== 'hi' && Math.random() < 0.4 && TOPICS.length > 0) {
-            discordClient.reply(areYouExcitedAbout(message));
+            message.channel.send(areYouExcitedAbout(message));
         }
     }
 });
