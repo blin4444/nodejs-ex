@@ -35,12 +35,25 @@ function dlluResponse() {
         'panic!!!!!!!!',
         'are you excited about',
         'no!!!!!!!!',
-        'not sure'
+        'not sure',
+        ':@'
     ];
     return responseHelper(responses).text;
 }
 
 const EXC_INSUFFICIENT_DATA = 'There is as of yet insufficient data for a meaningful answer.';
+
+function statementResponse() {
+    const responses = [
+        'amazing!',
+        'hooray',
+        'oh ok',
+        'oh',
+        'oh hmm',
+        ':@',
+    ];
+    return responseHelper(responses).text;
+}
         
 function questionResponse() {
     const responses = [
@@ -83,19 +96,33 @@ function yesNoQuestionResponse() {
     return response;
 }
 
+function hiResponse(message) {
+    setTimeout(function() {
+        message.reply('how are you?');
+    }, 1000);
+    return 'hi';
+}
+
+function hmmResponse(message) {
+    return message.content;
+}
+
 //order matters
 const responseHandlers = [
-    { regExp:  /is|are\s.+\?$/, handler: yesNoQuestionResponse },
+    { regExp: /is|are\s.+\?$/, handler: yesNoQuestionResponse },
     { regExp: /is ugly$/, handler: function() { return 'ur face is ugly'; } },
-    { regExp:  /^why/, handler: whyQuestionResponse },
-    { regExp:  /\?$/, handler: questionResponse },
+    { regExp: /^why\s.+\?$/, handler: whyQuestionResponse },
+    { regExp: /^hi$/, handler: hiResponse },
+    { regExp: /\?$/, handler: questionResponse },
+    { regExp: /^hm+/, handler: hmmResponse },
+    { regExp: /^i am|i'm|s?he|it|they\s/, handler: statementResponse }
 ];
 
-function getResponseForString(canonicalMessage) {
+function getResponseForString(canonicalMessage, message) {
     for (let x in responseHandlers) {
         const responseHandler = responseHandlers[x];
         if (canonicalMessage.match(responseHandler.regExp)) {
-            return responseHandler.handler();
+            return responseHandler.handler(message);
         }
     }
 
@@ -105,7 +132,7 @@ function getResponseForString(canonicalMessage) {
 discordClient.on('message', (message) => {
     if (message.author.id !== discordClient.user.id) {
         const canonicalMessage = message.content.trim().toLowerCase();
-        message.reply(getResponseForString(canonicalMessage));
+        message.reply(getResponseForString(canonicalMessage, message));
     }
 });
 
