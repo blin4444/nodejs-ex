@@ -17,14 +17,11 @@ function dlluResponse() {
     const responses = [
         'hi',
         'how are you?',
-        'terrible!',
         'oh no',
         'zxcv',
         'me too thanks',
         'oh ok',
         'ezpz',
-        'life is hard',
-        'such is life',
         'amazing!',
         'hooray!',
         'oh',
@@ -51,6 +48,10 @@ function statementResponse() {
         'oh',
         'oh hmm',
         ':@',
+        'terrible!!!!',
+        'triggered',
+        'such is life',
+        'life is hard'
     ];
     return responseHelper(responses).text;
 }
@@ -61,7 +62,9 @@ function questionResponse() {
         'sometimes',
         'zxcv',
         'not sure',
-        'confidential'
+        'confidential',
+        'dunno',
+        'oh not sure'
     ];
     return responseHelper(responses).text;
 }
@@ -73,7 +76,8 @@ function whyQuestionResponse() {
         'not sure',
         'such is life',
         'that\u2019s confidential',
-        'woof'
+        'woof',
+        'dunno'
     ];
     return responseHelper(responses).text;
 }
@@ -96,10 +100,16 @@ function yesNoQuestionResponse() {
     return response;
 }
 
-function hiResponse(message) {
+function timeoutReply(message, text, delay) {
     setTimeout(function() {
-        message.reply('how are you?');
-    }, 1000);
+        message.reply(text);
+    }, delay);
+}
+
+function hiResponse(message) {
+    if (Math.random() < 0.5) {
+        timeoutReply(message, 'how are you?', 1000);
+    }
     return 'hi';
 }
 
@@ -116,6 +126,7 @@ const responseHandlers = [
     { regExp: /\?$/, handler: questionResponse },
     { regExp: /^hm+/, handler: hmmResponse },
     { regExp: /^i am|i'm|s?he|it|they\s/, handler: statementResponse }
+    { regExp: /^yes|yeah|si|no|maybe|sometimes/, handler: statementResponse }
 ];
 
 function getResponseForString(canonicalMessage, message) {
@@ -129,10 +140,32 @@ function getResponseForString(canonicalMessage, message) {
     return dlluResponse();
 }
 
+function questionStarter() {
+    const responses = [
+        'are you excited about',
+        'what do you think of',
+        'how do you feel about'
+    ];
+    return responseHelper(responses).text;
+}
+
+const topics = process.env.DISCORD_TOPICS.split('|');
+function areYouExcitedAbout() {
+    const topic = responseHalper(topics).text;
+    if (Math.random() < 1/3) {
+        timeoutReply(message, 'http://en.wikipedia.org/wiki/' + escape(topic), 3000);
+    }
+    return questionStarter() + ' ' + topic + '?';
+}
+
 discordClient.on('message', (message) => {
     if (message.author.id !== discordClient.user.id) {
         const canonicalMessage = message.content.trim().toLowerCase();
         message.reply(getResponseForString(canonicalMessage, message));
+
+        if (canonicalMessage !== 'hi' && Math.random() < 0.2) {
+            discordClient.reply(areYouExcitedAbout(message));
+        }
     }
 });
 
