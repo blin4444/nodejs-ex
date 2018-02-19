@@ -127,7 +127,7 @@ const responseHandlers = [
     { regExp: /^hm+/, handler: hmmResponse },
     { regExp: /^\w+\s+(is|are)/, handler: statementResponse },
     { regExp: /^\w+'(s|re)\s/, handler: statementResponse },
-    { regExp: /^(yes|yeah|y(a|e|u)p?|si|no|maybe|sometimes|zxcv|xgv')/, handler: statementResponse }
+    { regExp: /^(yes|yeah|y(a|e|u)(p|h)?|si|no|maybe|sometimes|zxcv|xgv')/, handler: statementResponse }
 ];
 
 function getResponseForString(canonicalMessage, message) {
@@ -166,6 +166,8 @@ discordClient.on('message', (message) => {
 
         if (canonicalMessage !== 'hi' && Math.random() < 0.4 && TOPICS.length > 0) {
             message.channel.send(areYouExcitedAbout(message));
+        } else if (Math.random() < 0.1) {
+            message.channel.send(process.env.DISCORD_PUPPY_URL);
         }
     }
 });
