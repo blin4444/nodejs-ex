@@ -125,7 +125,7 @@ const responseHandlers = [
     { regExp: /^hi$/, handler: hiResponse },
     { regExp: /\?$/, handler: questionResponse },
     { regExp: /^hm+/, handler: hmmResponse },
-    { regExp: /^i am|i'm|s?he|it|they\s/, handler: statementResponse }
+    { regExp: /^i am|i'm|s?he is|it is|it's|they are\s/, handler: statementResponse }
     { regExp: /^yes|yeah|si|no|maybe|sometimes/, handler: statementResponse }
 ];
 
@@ -163,7 +163,7 @@ discordClient.on('message', (message) => {
         const canonicalMessage = message.content.trim().toLowerCase();
         message.reply(getResponseForString(canonicalMessage, message));
 
-        if (canonicalMessage !== 'hi' && Math.random() < 0.2 && TOPICS.length) {
+        if (canonicalMessage !== 'hi' && Math.random() < 0.4 && TOPICS.length) {
             discordClient.reply(areYouExcitedAbout(message));
         }
     }
