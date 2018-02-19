@@ -37,7 +37,7 @@ function dlluResponse() {
         'no!!!!!!!!',
         'not sure'
     ];
-    return responseHelper(responses);
+    return responseHelper(responses).text;
 }
 
 const EXC_INSUFFICIENT_DATA = 'There is as of yet insufficient data for a meaningful answer.';
@@ -50,7 +50,7 @@ function questionResponse() {
         'not sure',
         'confidential'
     ];
-    return responseHelper(responses);
+    return responseHelper(responses).text;
 }
 
 function whyQuestionResponse() {
@@ -62,7 +62,7 @@ function whyQuestionResponse() {
         'that\u2019s confidential',
         'woof'
     ];
-    return responseHelper(responses);
+    return responseHelper(responses).text;
 }
 
 function yesNoQuestionResponse() {
