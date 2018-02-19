@@ -53,7 +53,7 @@ function questionResponse() {
     return responseHelper(responses);
 }
 
-function whyResponse() {
+function whyQuestionResponse() {
     const responses = [
         'life is full of mysteries',
         EXC_INSUFFICIENT_DATA,
