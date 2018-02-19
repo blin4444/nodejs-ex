@@ -151,7 +151,7 @@ function questionStarter() {
 
 const TOPICS = process.env.DISCORD_TOPICS ? process.env.DISCORD_TOPICS.split('|') : [];
 function areYouExcitedAbout() {
-    const topic = responseHalper(TOPICS).text;
+    const topic = responseHelper(TOPICS).text;
     if (Math.random() < 1/3) {
         timeoutReply(message, 'http://en.wikipedia.org/wiki/' + escape(topic), 3000);
     }
