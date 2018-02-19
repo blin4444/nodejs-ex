@@ -40,7 +40,7 @@ function dlluResponse() {
     return responseHelper(responses);
 }
 
-const EXC_INSUFFICIENT_DATA = 'There is as of yet insufficient data for a meaningful answer.',  
+const EXC_INSUFFICIENT_DATA = 'There is as of yet insufficient data for a meaningful answer.';
         
 function questionResponse() {
     const responses = [
