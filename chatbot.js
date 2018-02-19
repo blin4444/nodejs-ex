@@ -126,7 +126,8 @@ const responseHandlers = [
     { regExp: /\?$/, handler: questionResponse },
     { regExp: /^hm+/, handler: hmmResponse },
     { regExp: /^\w+\s+(is|are)/, handler: statementResponse },
-    { regExp: /^(yes|yeah|si|no|maybe|sometimes)/, handler: statementResponse }
+    { regExp: /^\w+'(s|re)\s/, handler: statementResponse },
+    { regExp: /^(yes|yeah|y(a|e|u)p?|si|no|maybe|sometimes|zxcv|xgv')/, handler: statementResponse }
 ];
 
 function getResponseForString(canonicalMessage, message) {
