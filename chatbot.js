@@ -149,9 +149,9 @@ function questionStarter() {
     return responseHelper(responses).text;
 }
 
-const topics = process.env.DISCORD_TOPICS.split('|');
+const TOPICS = process.env.DISCORD_TOPICS ? process.env.DISCORD_TOPICS.split('|') : [];
 function areYouExcitedAbout() {
-    const topic = responseHalper(topics).text;
+    const topic = responseHalper(TOPICS).text;
     if (Math.random() < 1/3) {
         timeoutReply(message, 'http://en.wikipedia.org/wiki/' + escape(topic), 3000);
     }
@@ -163,7 +163,7 @@ discordClient.on('message', (message) => {
         const canonicalMessage = message.content.trim().toLowerCase();
         message.reply(getResponseForString(canonicalMessage, message));
 
-        if (canonicalMessage !== 'hi' && Math.random() < 0.2) {
+        if (canonicalMessage !== 'hi' && Math.random() < 0.2 && TOPICS.length) {
             discordClient.reply(areYouExcitedAbout(message));
         }
     }
