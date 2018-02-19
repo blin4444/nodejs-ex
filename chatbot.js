@@ -104,7 +104,7 @@ function getResponseForString(canonicalMessage) {
 
 discordClient.on('message', (message) => {
     if (message.author.id !== discordClient.user.id) {
-        const canonicalMessage = message.content.strip().toLowerCase();
+        const canonicalMessage = message.content.trim().toLowerCase();
         message.reply(getResponseForString(canonicalMessage));
     }
 });
