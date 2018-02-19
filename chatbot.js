@@ -119,14 +119,14 @@ function hmmResponse(message) {
 
 //order matters
 const responseHandlers = [
-    { regExp: /is|are\s.+\?$/, handler: yesNoQuestionResponse },
+    { regExp: /(is|are)\s.+\?$/, handler: yesNoQuestionResponse },
     { regExp: /is ugly$/, handler: function() { return 'ur face is ugly'; } },
     { regExp: /^why\s.+\?$/, handler: whyQuestionResponse },
     { regExp: /^hi$/, handler: hiResponse },
     { regExp: /\?$/, handler: questionResponse },
     { regExp: /^hm+/, handler: hmmResponse },
-    { regExp: /^i am|i'm|s?he is|it is|it's|they are\s/, handler: statementResponse }
-    { regExp: /^yes|yeah|si|no|maybe|sometimes/, handler: statementResponse }
+    { regExp: /^\w+\s+(is|are)/, handler: statementResponse }
+    { regExp: /^(yes|yeah|si|no|maybe|sometimes)/, handler: statementResponse }
 ];
 
 function getResponseForString(canonicalMessage, message) {
@@ -163,7 +163,7 @@ discordClient.on('message', (message) => {
         const canonicalMessage = message.content.trim().toLowerCase();
         message.reply(getResponseForString(canonicalMessage, message));
 
-        if (canonicalMessage !== 'hi' && Math.random() < 0.4 && TOPICS.length) {
+        if (canonicalMessage !== 'hi' && Math.random() < 0.4 && TOPICS.length > 0) {
             discordClient.reply(areYouExcitedAbout(message));
         }
     }
