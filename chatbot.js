@@ -13,31 +13,6 @@ function responseHelper(responses) {
     };
 }
 
-function dlluResponse() {
-    const responses = [
-        'hi',
-        'how are you?',
-        'oh no',
-        'zxcv',
-        'me too thanks',
-        'oh ok',
-        'ezpz',
-        'amazing!',
-        'hooray!',
-        'oh',
-        'are you excited about the future of puppies?',
-        'do you like moss?',
-        'how do you feel about point set registration?',
-        'confidential!!!!!!!',
-        'panic!!!!!!!!',
-        'are you excited about',
-        'no!!!!!!!!',
-        'not sure',
-        ':@'
-    ];
-    return responseHelper(responses).text;
-}
-
 const EXC_INSUFFICIENT_DATA = 'There is as of yet insufficient data for a meaningful answer.';
 
 function statementResponse() {
@@ -51,7 +26,9 @@ function statementResponse() {
         'terrible!!!!',
         'triggered',
         'such is life',
-        'life is hard'
+        'life is hard',
+        'me too thanks',
+        'hi'
     ];
     return responseHelper(responses).text;
 }
@@ -138,7 +115,7 @@ function getResponseForString(canonicalMessage, message) {
         }
     }
 
-    return dlluResponse();
+    return null;
 }
 
 function questionStarter() {
@@ -162,11 +139,13 @@ function areYouExcitedAbout(message) {
 discordClient.on('message', (message) => {
     if (message.author.id !== discordClient.user.id) {
         const canonicalMessage = message.content.trim().toLowerCase();
-        message.channel.send(getResponseForString(canonicalMessage, message));
+        const response = getResponseForString(canonicalMessage, message);
 
-        if (canonicalMessage !== 'hi' && Math.random() < 0.4 && TOPICS.length > 0) {
+        if (response !== null) {
+            message.channel.send(response);
+        } else if (Math.random() < 0.4 && TOPICS.length > 0) {
             message.channel.send(areYouExcitedAbout(message));
-        } else if (Math.random() < 0.1) {
+        } else if (Math.random() < 0.2) {
             message.channel.send(process.env.DISCORD_PUPPY_URL);
         }
     }
