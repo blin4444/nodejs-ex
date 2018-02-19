@@ -125,7 +125,7 @@ const responseHandlers = [
     { regExp: /^hi$/, handler: hiResponse },
     { regExp: /\?$/, handler: questionResponse },
     { regExp: /^hm+/, handler: hmmResponse },
-    { regExp: /^\w+\s+(is|are)/, handler: statementResponse }
+    { regExp: /^\w+\s+(is|are)/, handler: statementResponse },
     { regExp: /^(yes|yeah|si|no|maybe|sometimes)/, handler: statementResponse }
 ];
 
