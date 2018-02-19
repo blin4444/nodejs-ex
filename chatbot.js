@@ -143,9 +143,13 @@ discordClient.on('message', (message) => {
 
         if (response !== null) {
             message.channel.send(response);
-        } else if (Math.random() < 0.4 && TOPICS.length > 0) {
+        }
+        
+        if (response === null || (Math.random() < 0.4 && TOPICS.length > 0)) {
             message.channel.send(areYouExcitedAbout(message));
-        } else if (Math.random() < 0.2) {
+        }
+        
+        if (Math.random() < 0.15) {
             message.channel.send(process.env.DISCORD_PUPPY_URL);
         }
     }
